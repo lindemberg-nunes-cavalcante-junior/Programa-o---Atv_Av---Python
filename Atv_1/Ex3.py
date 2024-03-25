@@ -8,25 +8,39 @@ a) o tempo de viagem (em segundos)
 b) a velocidade média (Km/h) global e a velocidade média em movimento (Km/h) 
 c) o custo da viagem com combustível (em R$)
 d) o desempenho do carro (em Km/l, l/h e R$/Km).
+1 H ---> 60 M
+0.12 ----> x
 '''
 
-T_Inicial = float(input('Informe o tempo de partida(H.M):'))
-T_Final = float(input('Informe o tempo de chegada(H.M):'))
+T_H_Inicial = int(input('Informe o tempo de partida(Horas):'))
+T_M_Inicial = int(input('Informe o tempo de partida(Minutos):'))
+T_H_Final = int(input('Informe o tempo de chegada(Horas):'))
+T_M_Final = int(input('Informe o tempo de chegada(Minutos):'))
 Combustivel = float(input('Informe o preço do combustível:(R$)'))
 Litro = float(input('Litros de combustível usado:'))
 Distancia = float(input('Informe a distância percorrida:'))
-
-if T_Inicial >= 0 and T_Final > 0 and Combustivel > 0 and Litro > 0 and Distancia > 0:
+'''
+8:30 --> 2:30
+'''
+if Combustivel > 0 and Litro > 0 and Distancia > 0:
     print('--------------------------------------------------------------------------')
-    T_H_inicial = int(round(T_Inicial, 2))
-    T_M_inicial = round(T_Inicial - T_H_inicial, 2)
-    T_H_Final = int(round(T_Final, 2))
-    T_M_Final = round(T_Final - T_H_Final, 2)
-    tempo_viagem = ((T_H_Final * 3600) + ((T_M_Final * 10) * 60)) - ((T_H_inicial * 3600) + ((T_M_inicial * 10) * 60))
+    T_Inicial = (T_H_Inicial * 3600) + (T_M_Inicial * 60)
+    T_Final = (T_H_Final * 3600) + (T_M_Final * 60) 
+    tempo_viagem = 0
+    if T_H_Final < T_H_Inicial:
+       tempo_viagem +=(24 - T_H_Inicial) * 3600
+       print(tempo_viagem)
+    if T_M_Final < T_M_Inicial:
+        tempo_viagem += (60 - T_M_Inicial) * 60
+        print(tempo_viagem)
+    print(tempo_viagem)
+    aux = tempo_viagem
+    tempo_viagem = aux + (T_Final - T_Inicial)
+    print(tempo_viagem)
     print(f'O tempo de viagem é:{tempo_viagem} segundos')
 
-    Vm_global= Distancia/((((T_H_Final * 3600) + ((T_M_Final * 10) * 60))/3600) + (((T_H_inicial * 3600) + ((T_M_inicial * 10) * 60))/3600))
-    Vm_movimento = Distancia/(((T_H_Final * 3600) + ((T_M_Final * 10) * 60)) - ((T_H_inicial * 3600) + ((T_M_inicial * 10) * 60))/3600)
+    Vm_global= Distancia/((T_Final + T_Inicial)/3600)
+    Vm_movimento = Distancia/(T_H_Final/3600)
     print(f'Velocidade média global: {Vm_global:0.2f} KM/H, velocidade média em movimento: {Vm_movimento:0.2f} KM/H')
 
     custo = Combustivel * Litro
