@@ -4,10 +4,10 @@ Faça um programa que pergunta: o momento inicial da partida (hora e minuto), o 
 (hora e minuto), o número de segundos parados para descanso, o número de litros de combustível gasto 
 (em l), o preço do litro de combustível (em R$) e a distância percorrida (em Km); 
 Após receber os dados, o programa informa dados típicos de um computador de bordo: 
-a) o tempo de viagem (em segundos)
-b) a velocidade média (Km/h) global e a velocidade média em movimento (Km/h) 
-c) o custo da viagem com combustível (em R$)
-d) o desempenho do carro (em Km/l, l/h e R$/Km).
+a) o tempo de viagem (em segundos) (feito)
+b) a velocidade média (Km/h) global e a velocidade média em movimento (Km/h)  (feito)
+c) o custo da viagem com combustível (em R$) (feito)
+d) o desempenho do carro (em Km/l, l/h e R$/Km). (feito)
 1 H ---> 60 M
 0.12 ----> x
 '''
@@ -28,7 +28,7 @@ if T_M_Final < T_M_Inicial:
         tempo_extra += (60 - T_M_Inicial) * 60
         
 '''
-12:30 --> 2:12
+12:30 --> 2:12 (teste feito para descobrir as condições acima)
 '''
 if Combustivel > 0 and Litro > 0 and Distancia > 0:
     print('--------------------------------------------------------------------------')
@@ -39,7 +39,7 @@ if Combustivel > 0 and Litro > 0 and Distancia > 0:
     
     print(f'O tempo de viagem é:{tempo_viagem} segundos')
 
-    Vm_global= Distancia/((tempo_viagem + T_Inicial)/3600)
+    Vm_global= Distancia/((tempo_viagem - T_Inicial)/3600)
     Vm_movimento = Distancia/(tempo_viagem/3600)
     
     print(f'Velocidade média global: {Vm_global:0.2f} KM/H, velocidade média em movimento: {Vm_movimento:0.2f} KM/H')
@@ -47,7 +47,7 @@ if Combustivel > 0 and Litro > 0 and Distancia > 0:
     custo = Combustivel * Litro
     print(f'O custo foi: R$ {custo}')
     
-    H_viagem = (T_Inicial + tempo_viagem) / 3600
+    H_viagem = (tempo_viagem) / 3600
     KM_L =  Distancia/Litro
     L_H = Litro/H_viagem
     R_KM = custo/Distancia

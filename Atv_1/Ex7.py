@@ -10,10 +10,10 @@ que não é possível formar um triângulo com esses lados.
 
 (feito)c) Se for possível formar um triângulo, calcule os três ângulos do triângulo.
 
-d) Classifique o triângulo quanto aos lados (equilátero, isósceles ou escaleno) e aos ângulos 
+(feito)d) Classifique o triângulo quanto aos lados (equilátero, isósceles ou escaleno) e aos ângulos 
 (agudo, obtuso ou retângulo).
 
-e) Exiba a classificação do triângulo quanto aos lados e aos ângulos.
+(Feito)e) Exiba a classificação do triângulo quanto aos lados e aos ângulos.
 • Observações:
 (feito)o Para determinar se os lados fornecidos pelo usuário podem formar um triângulo, é necessário 
 verificar a seguinte condição: A soma de quaisquer dois lados de um triângulo deve ser 
@@ -32,27 +32,31 @@ o Considere que os ângulos são expressos em graus.
 Desenvolva o código em Python para atender às especificações acima
 '''
 import math
+import sys
+
 L_1 = float(input('Informe um dos lado:'))
-L_2 = float(input('Informe um dos lado:'))
-L_3 = float(input('Informe um dos lado:'))
+L_2 = float(input('Informe mais um lado:'))
+L_3 = float(input('Informe o último lado:'))
 
-if L_1 + L_2 > L_3 and L_1 + L_3 > L_2 and L_2 + L_3 > L_1:
-    if L_1 == L_2 == L_3:
-        tipo = 'equilátero'
-    elif L_1 == L_2 != L_3 or L_1 == L_3 != L_2 or L_2 == L_3 != L_1:
-        tipo = 'isósceles'
-    else:
-        tipo = 'escaleno'
-    Ang1 = round(math.degrees(math.acos((L_1 * L_1 + L_2 * L_2 - L_3 * L_3)/(2 * L_1 *L_2))), 2)
-    Ang2 = round(math.degrees(math.acos((L_3 * L_3 + L_2 * L_2 - L_1 * L_1)/(2 * L_3 *L_2))), 2)
-    Ang3 = round(math.degrees(math.acos((L_3 * L_3 + L_1 * L_1 - L_2 * L_2)/(2 * L_3 *L_1))),2)
-    if Ang1 > 90 or Ang2 > 90 or Ang3 > 90:
-        tipo2 = 'obtuso'
-    elif Ang1 == 90 or Ang2 == 90 or Ang3 == 90:
-        tipo2 = 'retângulo'
-    elif Ang1 < 90 and Ang2 < 90 and Ang3 < 90:
-        tipo2 = 'agudo'
-    print(f"Seu triângulo pelos lados é {tipo} e pelos ângulos é {tipo2}")
+if L_1 + L_2 <= L_3 or L_1 + L_3 <= L_2 or L_2 + L_3 <= L_1:
+    print("Esses lados não conseguem formar um triângulo, pois a soma de dois lados não é maior que o outro ou é igual ao outro.")
+    sys.exit()
+
+
+if L_1 == L_2 == L_3: # Comparação dos lados
+    tipo = 'equilátero'
+elif L_1 == L_2 != L_3 or L_1 == L_3 != L_2 or L_2 == L_3 != L_1:
+    tipo = 'isósceles'
 else:
-    print("Impossível formar um triangulo com esses lados.")
-
+    tipo = 'escaleno'
+Ang1 = math.degrees(math.acos((L_1 * L_1 + L_2 * L_2 - L_3 * L_3)/(2 * L_1 * L_2))) # Seguindo a Lei do Cosseno, você acha -cos = acos
+Ang2 = math.degrees(math.acos((L_3 * L_3 + L_2 * L_2 - L_1 * L_1)/(2 * L_3 * L_2)))
+Ang3 = math.degrees(math.acos((L_3 * L_3 + L_1 * L_1 - L_2 * L_2)/(2 * L_3 * L_1)))
+if Ang1 > 90 or Ang2 > 90 or Ang3 > 90: # Comparação dos ângulos
+    tipo2 = 'obtuso'
+elif Ang1 == 90 or Ang2 == 90 or Ang3 == 90:
+    tipo2 = 'retângulo'
+elif Ang1 < 90 and Ang2 < 90 and Ang3 < 90:
+    tipo2 = 'agudo'
+print(f"Seus ângulos são: {Ang1}, {Ang2} e {Ang3}")
+print(f"Seu triângulo pelos lados é {tipo} e pelos ângulos é {tipo2}")
