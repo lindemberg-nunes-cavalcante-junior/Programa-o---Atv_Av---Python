@@ -10,6 +10,7 @@ o 03 de 02 até 03 de 05 - 79 dias
 Não esqueça de verificar se a data inicial é menor ou igual à data final.
 Dica: conte o número de dias até cada uma das datas e subtraia esses números.
 '''
+import sys
 
 D_inicial = int(input('Informe o dia inicial:'))
 M_inicial = int(input('Informe o mês inicial:'))
@@ -69,4 +70,6 @@ if D_inicial <= D_final and M_inicial <= M_final:
 
     dias = dias_final - dias_começo               
     print(f'Se passaram {dias} dias')
+else:
+    print("informe um valor válido")
         

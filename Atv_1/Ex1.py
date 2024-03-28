@@ -1,7 +1,7 @@
 
-import sys
 
-x = int(input('Informe um número de a´te 4 dígitos(0 a 9999):'))
+
+x = int(input('Informe um número de Áte 4 dígitos(0 a 9999):'))
 
 if x >= 0 and x <= 9999:
     if x >=0 and x <= 99:
@@ -21,7 +21,6 @@ if x >= 0 and x <= 9999:
         x3 = xA // 10
         xA = xA % 10
         print(x1 + x2 + x3 + xA)
-    sys.exit()
 else:
     print('informe um número válido')
-    sys.exit()
+    

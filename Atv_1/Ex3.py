@@ -32,21 +32,22 @@ if T_M_Final < T_M_Inicial:
 '''
 if Combustivel > 0 and Litro > 0 and Distancia > 0:
     print('--------------------------------------------------------------------------')
+    #Tempo da Viagem
     T_Inicial = (T_H_Inicial * 3600) + (T_M_Inicial * 60)
     T_Final = (T_H_Final * 3600) + (T_M_Final * 60) 
-    
     tempo_viagem =  T_Final + tempo_extra
-    
     print(f'O tempo de viagem é:{tempo_viagem} segundos')
 
+    #a velocidade média (Km/h) global e a velocidade média em movimento (Km/h)
     Vm_global= Distancia/((tempo_viagem - T_Inicial)/3600)
     Vm_movimento = Distancia/(tempo_viagem/3600)
-    
     print(f'Velocidade média global: {Vm_global:0.2f} KM/H, velocidade média em movimento: {Vm_movimento:0.2f} KM/H')
-
+    
+    #o custo da viagem com combustível (em R$)
     custo = Combustivel * Litro
     print(f'O custo foi: R$ {custo}')
     
+    #o desempenho do carro (em Km/l, l/h e R$/Km).
     H_viagem = (tempo_viagem) / 3600
     KM_L =  Distancia/Litro
     L_H = Litro/H_viagem

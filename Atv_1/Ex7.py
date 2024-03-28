@@ -49,14 +49,17 @@ elif L_1 == L_2 != L_3 or L_1 == L_3 != L_2 or L_2 == L_3 != L_1:
     tipo = 'isósceles'
 else:
     tipo = 'escaleno'
+    
 Ang1 = math.degrees(math.acos((L_1 * L_1 + L_2 * L_2 - L_3 * L_3)/(2 * L_1 * L_2))) # Seguindo a Lei do Cosseno, você acha -cos = acos
 Ang2 = math.degrees(math.acos((L_3 * L_3 + L_2 * L_2 - L_1 * L_1)/(2 * L_3 * L_2)))
 Ang3 = math.degrees(math.acos((L_3 * L_3 + L_1 * L_1 - L_2 * L_2)/(2 * L_3 * L_1)))
+
 if Ang1 > 90 or Ang2 > 90 or Ang3 > 90: # Comparação dos ângulos
     tipo2 = 'obtuso'
 elif Ang1 == 90 or Ang2 == 90 or Ang3 == 90:
     tipo2 = 'retângulo'
 elif Ang1 < 90 and Ang2 < 90 and Ang3 < 90:
     tipo2 = 'agudo'
+    
 print(f"Seus ângulos são: {Ang1}, {Ang2} e {Ang3}")
 print(f"Seu triângulo pelos lados é {tipo} e pelos ângulos é {tipo2}")

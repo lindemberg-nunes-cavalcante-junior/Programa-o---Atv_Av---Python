@@ -26,6 +26,7 @@ dt_today = datetime.today()
 idade_minima = (dt_today.year - dt_nasc.year)
 if dt_nasc.day < dt_today.day and dt_nasc.month >= dt_today.month:
     idade_minima = idade_minima - 1
+
 print('------------------------------------------------------------------------------------------')
 if idade_minima >= 18:
     if sexo == 'masculino':
