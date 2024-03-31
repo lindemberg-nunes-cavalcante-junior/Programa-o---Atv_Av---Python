@@ -17,12 +17,80 @@ o Mulheres podem se aposentar após 30 anos de contribuição.
 Implemente o programa em Python para calcular a data de aposentadoria e exibi-la como resultado.
 '''
 from datetime import *
+from dateutil import relativedelta
+from sys import exit
+
+dt_today = datetime.today()
 
 sexo = input('informe seu sexo(masculino/feminino):')
 dt_nasc = datetime.strptime(input('Informe sua data de nascimento (DD/MM/AAAA):'), '%d/%m/%Y').date()
-dt_previdencia = datetime.strptime(input('Informe sua data de início de contribuição (DD/MM/AAAA):'), '%d/%m/%Y').date()
-dt_today = datetime.today()
 
+idade_minima = relativedelta.relativedelta(dt_today, dt_nasc)
+if idade_minima.years < 16:# verificação de idade
+    print("Você ainda não pode fazer a verificação de aposentadoria, apenas 16 anos ou mais.")
+    exit()
+
+dt_previdencia = datetime.strptime(input('Informe sua data de início de contribuição (DD/MM/AAAA):'), '%d/%m/%Y').date()
+
+
+if sexo == 'masculino':# procedimento para homens
+    data_aposentadoria = dt_nasc + relativedelta.relativedelta(years=+ 65)# data para se aposentar
+    data_auxiliar = data_aposentadoria + relativedelta.relativedelta(years=- 15)
+    tempo_contribuicao = relativedelta.relativedelta(data_auxiliar, dt_previdencia)#tempo que contribuiu para a previdência
+
+    if tempo_contribuicao.years >= 15 and tempo_contribuicao < 35:# aposentadoria por idade
+        print(f'Sua data de aposentadoria é {data_aposentadoria}')
+    elif tempo_contribuicao.years < 15:# aposentadoria por idade caso não ter todo tempo de contribuição
+        resto = 15 - tempo_contribuicao.years
+        data_aposentadoria = data_aposentadoria + relativedelta.relativedelta(years=+ resto)
+        print(f'Sua data de aposentadoria é {data_aposentadoria}')
+    elif tempo_contribuicao >= 35:# aposentadoria por contribuição
+        data_aposentadoria = dt_previdencia + relativedelta.relativedelta(years=+ 35)
+        print(f"Sua data de aposentadoria é {data_aposentadoria}")
+
+if sexo == 'feminino':# procedimentos para mulheres
+    data_aposentadoria = dt_nasc + relativedelta.relativedelta(years=+ 62)# data para se aposentar
+    data_auxiliar = data_aposentadoria + relativedelta.relativedelta(years=- 15)
+    tempo_contribuicao = relativedelta.relativedelta(data_auxiliar, dt_previdencia) # tempo que contribuiu para a previdência
+
+    if tempo_contribuicao.years >= 15 and tempo_contribuicao < 30:# aposentadoria por idade
+        print(f'Sua data de aposentadoria é {data_aposentadoria}')
+    elif tempo_contribuicao.years < 15:# aposentadoria por idade caso não ter todo tempo de contribuição
+        resto = 15 - tempo_contribuicao.years
+        data_aposentadoria = data_aposentadoria + relativedelta.relativedelta(years=+ resto)
+        print(f'Sua data de aposentadoria é {data_aposentadoria}')
+    elif tempo_contribuicao >= 30:# aposentadoria por contribuição
+        data_aposentadoria = dt_previdencia + relativedelta.relativedelta(years=+ 30)
+        print(f"Sua data de aposentadoria é {data_aposentadoria}")
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''
 idade_minima = (dt_today.year - dt_nasc.year)
 if dt_nasc.day < dt_today.day and dt_nasc.month >= dt_today.month:
     idade_minima = idade_minima - 1
@@ -57,3 +125,4 @@ if idade_minima >= 18:
             print(f'Por idade você poderá se aposentar na data {dt_aposentar}')
 else:
     print('Você não possui a idade mínima para contribuir.')
+'''

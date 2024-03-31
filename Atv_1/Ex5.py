@@ -13,9 +13,9 @@ sexta hora): total de R$ 32,00 (feito)
 
 M = int(input('Informe quantos minutos se passou:'))
 
-horas = M//60
-horas_totais = int(round(horas, 0))
-fracao = horas - horas_totais
+horas = M//60 
+horas_totais = int(round(horas, 0)) # horas passadas
+fracao = horas - horas_totais # resto de hora
 
 
 if horas > 2:

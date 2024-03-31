@@ -51,7 +51,7 @@ else:
     tipo = 'escaleno'
     
 Ang1 = math.degrees(math.acos((L_1 * L_1 + L_2 * L_2 - L_3 * L_3)/(2 * L_1 * L_2))) # Seguindo a Lei do Cosseno, você acha -cos = acos
-Ang2 = math.degrees(math.acos((L_3 * L_3 + L_2 * L_2 - L_1 * L_1)/(2 * L_3 * L_2)))
+Ang2 = math.degrees(math.acos((L_3 * L_3 + L_2 * L_2 - L_1 * L_1)/(2 * L_3 * L_2))) # Então descobre o ângulo
 Ang3 = math.degrees(math.acos((L_3 * L_3 + L_1 * L_1 - L_2 * L_2)/(2 * L_3 * L_1)))
 
 if Ang1 > 90 or Ang2 > 90 or Ang3 > 90: # Comparação dos ângulos
